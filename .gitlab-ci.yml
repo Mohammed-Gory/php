@@ -1,0 +1,16 @@
+a-job-with-docker-compose
+image: docker
+
+services:
+
+  - docker:dind
+
+script:
+
+  - apk add docker-compose --update-cache --repository http://dl-3.alpinelinux.org/Alpine/Edge/testing/ --allow-untrusted
+
+  - docker-compose run --rm composer require --dev phpunit/phpunit
+
+  - docker-compose run --rm composer dump-autoload -o
+
+  - docker-compose run --rm phpunit tests --testdox
