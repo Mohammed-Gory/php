@@ -1,16 +1,16 @@
-a-job-with-docker-compose
-image: docker
+a-job-with-docker-:
+  image: docker
 
-services:
+  services:
 
-  - docker:dind
+    - docker:dind
 
-script:
+  script:
 
-  - apk add docker-compose --update-cache --repository http://dl-3.alpinelinux.org/Alpine/Edge/testing/ --allow-untrusted
+    - apk add docker-compose --update-cache --repository http://dl-3.alpinelinux.org/Alpine/Edge/testing/ --allow-untrusted
 
-  - docker-compose run --rm composer require --dev phpunit/phpunit
+    - docker-compose run --rm composer require --dev phpunit/phpunit
 
-  - docker-compose run --rm composer dump-autoload -o
+    - docker-compose run --rm composer dump-autoload -o
 
-  - docker-compose run --rm phpunit tests --testdox
+    - docker-compose run --rm phpunit tests --testdox
